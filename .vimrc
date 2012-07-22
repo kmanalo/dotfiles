@@ -1,3 +1,6 @@
+
+let $MYVIMRC=$HOME."/dotfiles/.vimrc"
+
 set nowrap
 set tabstop=4
 set shiftwidth=4
@@ -29,7 +32,7 @@ nnoremap <F4> Vg<c-g><c-[> <CR
 
 " source as soon as we write the vimrc file
 if has("autocmd")
-  autocmd bufwritepost _vimrc source $MYVIMRC
+  autocmd bufwritepost .vimrc source $MYVIMRC
 endif
 
 " enables ,v to edit vimrc
