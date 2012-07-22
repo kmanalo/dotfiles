@@ -12,9 +12,12 @@ set nohlsearch
 nnoremap <CR> :noh<CR><CR>
 
 set t_Co=256
-silent! colorscheme leo
-" another pleasant color
+" another pleasant color in gvim
 silent! colorscheme koehler
+" otherwise use this one in linux
+if has("unix")
+  silent! colorscheme leo
+endif
 
 "When comparing files with vimdiff ignore whitespace
 set diffopt+=iwhite
