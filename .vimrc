@@ -1,6 +1,17 @@
 
 let $MYVIMRC=$HOME."/dotfiles/.vimrc"
 
+"pathogen support
+source ~/dotfiles/bundle/vim-pathogen/autoload/pathogen.vim
+call pathogen#infect('~/dotfiles/bundle')
+call pathogen#helptags()
+call pathogen#runtime_append_all_bundles()
+filetype off
+syntax on
+filetype plugin indent on
+
+"fortran boolean to ensure free format
+let fortran_free_source=1
 set nowrap
 set tabstop=4
 set shiftwidth=4
