@@ -5,3 +5,9 @@ source $VIMRUNTIME/mswin.vim
 behave mswin
 
 source $HOME/dotfiles/.vimrc
+
+" for pathogen:
+call pathogen#infect()
+syntax on
+filetype plugin indent on
+
