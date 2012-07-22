@@ -4,4 +4,4 @@ source $VIMRUNTIME/mswin.vim
 " source $VIMRUNTIME/templates.ar.vim
 behave mswin
 
-source $HOME/dotfiles/.vimrc
+source ../.vimrc

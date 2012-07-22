@@ -14,7 +14,7 @@ nnoremap <CR> :noh<CR><CR>
 set t_Co=256
 silent! colorscheme leo
 " another pleasant color
-silent! colorscheme koehler
+" silent! colorscheme koehler
 
 "When comparing files with vimdiff ignore whitespace
 set diffopt+=iwhite
