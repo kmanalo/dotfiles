@@ -55,4 +55,5 @@ nmap <leader>v :tabedit $MYVIMRC<CR>
 
 " delete trailing whitespace
 nnoremap <silent> <leader><del> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>
+" remove trailing whitespace before join, command is ",J"
 nnoremap <silent> <leader>J :let _s=@/<Bar>:s/\s\+$//e<Bar>:j<CR>:let @/=_s<Bar>:nohl<CR>
