@@ -2,11 +2,10 @@
 let $MYVIMRC=$HOME."/dotfiles/.vimrc"
 
 "pathogen support
+"call pathogen#helptags()
 source ~/dotfiles/bundle/vim-pathogen/autoload/pathogen.vim
 call pathogen#infect('~/dotfiles/bundle')
-call pathogen#helptags()
-call pathogen#runtime_append_all_bundles()
-filetype off
+call pathogen#runtime_append_all_bundles('~/dotfiles/bundle')
 syntax on
 filetype plugin indent on
 
@@ -54,3 +53,6 @@ endif
 let mapleader = ","
 nmap <leader>v :tabedit $MYVIMRC<CR>
 
+" delete trailing whitespace
+nnoremap <silent> <leader><del> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>
+nnoremap <silent> <leader>J :let _s=@/<Bar>:s/\s\+$//e<Bar>:j<CR>:let @/=_s<Bar>:nohl<CR>
