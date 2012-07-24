@@ -56,6 +56,7 @@ alias vip='vim -p'
 alias rm='rm -i'
 alias df='df -h'
 alias quota='quota -s -u'
+alias du='du -h'
 
 # ignore duplicates in history
 export HISTCONTROL=ignoredups
