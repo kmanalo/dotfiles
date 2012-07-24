@@ -1,3 +1,3 @@
 augroup filetypedetect
-au! BufNewFile,BufRead *.pen setfiletype pentran
+au! BufNewFile,BufRead *.pen setfiletype pen
 augroup END
