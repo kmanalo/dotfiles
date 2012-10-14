@@ -14,6 +14,8 @@ let fortran_free_source=1
 set nowrap
 set tabstop=4
 set shiftwidth=4
+set softtabstop=4
+set expandtab
 
 "Highlights should always be off at first
 set nohlsearch    
