@@ -31,6 +31,7 @@ if [[ `hostname` = critcel* ]] ||
   export PATH=/nv/ps1/critcel-project:$PATH
   export PATH=$PATH:/usr/local/packages/git-1.7.0.5/bin
   export PATH=$PATH:/usr/local/packages/clisp/bin/
+  export PATH=/nv/hp16/kmanalo3/phd-bin:$PATH
   export GIT_TEMPLATE_DIR=/usr/local/packages/git-1.7.0.5/share/git-core/templates/
   export PKG=/nv/hp16/kmanalo3/data/packages   
   
