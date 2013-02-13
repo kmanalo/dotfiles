@@ -54,12 +54,14 @@ fi
 # Reagan User specific aliases and functions
 if [[ `hostname` = reagan* ]] ; then 
     # directory support
-    alias ls='ls --group-directories-first --color=auto'
-    eval $(dircolors -b ~/dotfiles/.dircolors)
+    alias ls='ls --color=auto'
+    #NOTWORKING eval $(dircolors -b ~/dotfiles/.dircolors)
 
     # DATAPATH for MCNP cross-section data
     export DATAPATH
     DATAPATH="/home/MCNP_DATA"
+
+    PATH=$PATH:/opt/local/bin
 fi
 
 # Host-independent aliases
@@ -78,7 +80,7 @@ export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
 
 # PATH for MCNP executables
 export PATH
-PATH="/nv/hp17/kmanalo3/critcel/rsicc-isos/mcnp6-beta3-dvd-pt1/LANL/MCNP_CODE/bin:/usr/local/packages//mvapich2/1.9/intel-12.1.4/bin:/usr/local/packages/intel/compiler/12.1.4/bin/intel64:/nv/hp16/kmanalo3/phd-bin:/nv/ps1/critcel-project:/opt/torque/2.4.3/bin:/usr/lib64/qt-3.3/bin:/usr/local/packages/python/3.2.2//bin:/usr/local/packages/matlab/r2011a/bin:/usr/local/packages//mvapich2/1.8.patched/pgi-11.10/bin:/usr/bin/:/opt/pace/bin/:/opt/moab/5.3.7/bin:/usr/local/bin:/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/sbin:/usr/local/packages/matlab/r2011a-dcs/bin:/usr/local/packages/matlab/r2011a-dcs/toolbox/distcomp/bin:/usr/local/packages/mathematica/8.0/bin:/usr/local/packages/git-1.7.0.5/bin:/usr/local/packages/clisp/bin/:/nv/hp17/kmanalo3/bin:/usr/local/mpich2-intel/bin/:/usr/local/packages/torque-2.1.6/bin/:/usr/local/packages/moab-5.3.0/bin/:/opt/cuda/bin:/nv/ps1/critcel-project:/usr/local/packages/hwloc/1.5/bin"
+PATH=$PATH:"/nv/hp17/kmanalo3/critcel/rsicc-isos/mcnp6-beta3-dvd-pt1/LANL/MCNP_CODE/bin:/usr/local/packages//mvapich2/1.9/intel-12.1.4/bin:/usr/local/packages/intel/compiler/12.1.4/bin/intel64:/nv/hp16/kmanalo3/phd-bin:/nv/ps1/critcel-project:/opt/torque/2.4.3/bin:/usr/lib64/qt-3.3/bin:/usr/local/packages/python/3.2.2//bin:/usr/local/packages/matlab/r2011a/bin:/usr/local/packages//mvapich2/1.8.patched/pgi-11.10/bin:/usr/bin/:/opt/pace/bin/:/opt/moab/5.3.7/bin:/usr/local/bin:/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/sbin:/usr/local/packages/matlab/r2011a-dcs/bin:/usr/local/packages/matlab/r2011a-dcs/toolbox/distcomp/bin:/usr/local/packages/mathematica/8.0/bin:/usr/local/packages/git-1.7.0.5/bin:/usr/local/packages/clisp/bin/:/nv/hp17/kmanalo3/bin:/usr/local/mpich2-intel/bin/:/usr/local/packages/torque-2.1.6/bin/:/usr/local/packages/moab-5.3.0/bin/:/opt/cuda/bin:/nv/ps1/critcel-project:/usr/local/packages/hwloc/1.5/bin"
  
 # Increase the stacksize 
 ulimit -s unlimited
