@@ -84,3 +84,9 @@ PATH=$PATH:"/nv/hp17/kmanalo3/critcel/rsicc-isos/mcnp6-beta3-dvd-pt1/LANL/MCNP_C
  
 # Increase the stacksize 
 ulimit -s unlimited
+
+# go ahead and source ubuntu default bashrc
+if [[ `hostname` == kevin-vbox ]] ; then
+  source ~/.bashrc.ubuntu  
+  source /opt/intel/composer_xe_2013.3.163/bin/compilervars.sh intel64
+fi
