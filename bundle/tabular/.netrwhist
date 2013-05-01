@@ -1,7 +1,0 @@
-let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =5
-let g:netrw_dirhist_1='/panfs/iw-scratch.pace.gatech.edu/v6/kmanalo3/mcnp-burnup-npth/feb.08.2012'
-let g:netrw_dirhist_2='/panfs/iw-scratch.pace.gatech.edu/v6/kmanalo3/b84'
-let g:netrw_dirhist_3='/panfs/iw-scratch.pace.gatech.edu/v6/kmanalo3/kcode_300_1.0_5_35_400runs/b308'
-let g:netrw_dirhist_4='/nv/ps1/kmanalo3/data/icosa-paper-analysis'
-let g:netrw_dirhist_5='/nv/ps1/critcel-project/groupdata/c5g7-uo2-mc-2013/uo2-upto-40x40-pentran/p38'

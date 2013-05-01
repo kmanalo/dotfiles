@@ -7,6 +7,7 @@ files that are currently maintained:
 
 .vimrc
 .bashrc
+_vimrc which is for windows, sources .vimrc
 
 a note to the user(me):
 
