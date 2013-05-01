@@ -9,20 +9,21 @@ call pathogen#runtime_append_all_bundles('~/dotfiles/bundle')
 syntax on
 filetype plugin indent on
 
-"fortran boolean to ensure free format
-let fortran_free_source=1
 set nowrap
 set tabstop=2
 set shiftwidth=2
 set softtabstop=2
 set expandtab
 
-"Highlights should always be off at first
+" highlights should always be off at first
 set nohlsearch    
+"Toggle switch for search highlighter
+nnoremap <F3> :set hlsearch!<CR>
 
-"This unsets the "last search pattern" register by hitting return
+" this unsets the "last search pattern" register by hitting return
 nnoremap <CR> :noh<CR><CR>
 
+" colorscheme section
 set t_Co=256
 " another pleasant color in gvim
 silent! colorscheme koehler
@@ -32,35 +33,47 @@ if has("unix")
   silent! colorscheme leo
 endif
 
-"When comparing files with vimdiff ignore whitespace
+" when comparing files with vimdiff ignore whitespace
 set diffopt+=iwhite
 
+" A better way to move between buffers!
 nnoremap <silent> [b :bprevious<CR>
 nnoremap <silent> ]b :bnext<CR>
 nnoremap <silent> [B :bfirst<CR>
 nnoremap <silent> ]B :blast<CR>
 
-"Toggle switch for search highlighter
-nnoremap <F3> :set hlsearch!<CR>
-
 "Pressing F4 gives you the word count!
 nnoremap <F4> Vg<c-g><c-[> <CR
+
+" mappings for ,_ to split horizontal
+map <leader>_ <C-w>s
+" mappings for ,| to split vertical
+map <leader><bar> <C-w>v
+
+" map to move between windows
+map <leader>k <C-w><Up>
+map <leader>j <C-w><Down>
+map <leader>h <C-w><Left>
+map <leader>l <C-w><Right>
+
+" enables ,v to edit vimrc
+let mapleader = ","
+nmap <leader>v :tabedit $MYVIMRC<CR>
 
 " source as soon as we write the vimrc file
 if has("autocmd")
   autocmd bufwritepost .vimrc source $MYVIMRC
 endif
 
-" enables ,v to edit vimrc
-let mapleader = ","
-nmap <leader>v :tabedit $MYVIMRC<CR>
-
 " delete trailing whitespace
 nnoremap <silent> <leader><del> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>
 " remove trailing whitespace before join, command is ",J"
 nnoremap <silent> <leader>J :let _s=@/<Bar>:s/\s\+$//e<Bar>:j<CR>:let @/=_s<Bar>:nohl<CR>
 
-" vim-latexsuite settings 
+" fortran boolean to ensure free format
+let fortran_free_source=1
+
+" section: vim-latexsuite settings 
 "
 " REQUIRED. This makes vim invoke Latex-Suite when you open a tex file.
 filetype plugin on
@@ -83,13 +96,3 @@ filetype indent on
 " " The following changes the default filetype back to 'tex':
 let g:tex_flavor='latex'
 
-" mappings for ,_ to split horizontal
-map <leader>_ <C-w>s
-" mappings for ,| to split vertical
-map <leader><bar> <C-w>v
-
-" map to move between windows
-map <leader>k <C-w><Up>
-map <leader>j <C-w><Down>
-map <leader>h <C-w><Left>
-map <leader>l <C-w><Right>
