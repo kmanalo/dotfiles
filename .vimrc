@@ -20,6 +20,9 @@ set expandtab
 "Highlights should always be off at first
 set nohlsearch    
 
+" toggle switch for search highlighter
+nnoremap <F3> :set hlsearch!<CR>
+
 "This unsets the "last search pattern" register by hitting return
 nnoremap <CR> :noh<CR><CR>
 
@@ -35,15 +38,13 @@ endif
 "When comparing files with vimdiff ignore whitespace
 set diffopt+=iwhite
 
+" a better way to move between buffers!
 nnoremap <silent> [b :bprevious<CR>
 nnoremap <silent> ]b :bnext<CR>
 nnoremap <silent> [B :bfirst<CR>
 nnoremap <silent> ]B :blast<CR>
 
-"Toggle switch for search highlighter
-nnoremap <F3> :set hlsearch!<CR>
-
-"Pressing F4 gives you the word count!
+" pressing F4 gives you the word count!
 nnoremap <F4> Vg<c-g><c-[> <CR
 
 " source as soon as we write the vimrc file
@@ -75,6 +76,7 @@ set grepprg=grep\ -nH\ $*
 " to 'plaintex' instead of 'tex', which results in vim-latex not being loaded.
 " The following changes the default filetype back to 'tex':
 let g:tex_flavor='latex'
+" end section: vim-latexsuite settings
 
 " support indents for tex files
 let g:tex_indent_items = 1
