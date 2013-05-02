@@ -17,7 +17,7 @@ set expandtab
 
 " highlights should always be off at first
 set nohlsearch    
-"Toggle switch for search highlighter
+" toggle switch for search highlighter
 nnoremap <F3> :set hlsearch!<CR>
 
 " this unsets the "last search pattern" register by hitting return
@@ -36,13 +36,13 @@ endif
 " when comparing files with vimdiff ignore whitespace
 set diffopt+=iwhite
 
-" A better way to move between buffers!
+" a better way to move between buffers!
 nnoremap <silent> [b :bprevious<CR>
 nnoremap <silent> ]b :bnext<CR>
 nnoremap <silent> [B :bfirst<CR>
 nnoremap <silent> ]B :blast<CR>
 
-"Pressing F4 gives you the word count!
+" pressing F4 gives you the word count!
 nnoremap <F4> Vg<c-g><c-[> <CR
 
 " mappings for ,_ to split horizontal
@@ -88,4 +88,5 @@ set grepprg=grep\ -nH\ $*
 " to 'plaintex' instead of 'tex', which results in vim-latex not being loaded.
 " The following changes the default filetype back to 'tex':
 let g:tex_flavor='latex'
+" end section: vim-latexsuite settings
 
