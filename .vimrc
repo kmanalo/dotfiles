@@ -1,11 +1,11 @@
 
 let $MYVIMRC=$HOME."/dotfiles/.vimrc"
 
-"pathogen support
-"call pathogen#helptags()
+" pathogen support
 source ~/dotfiles/bundle/vim-pathogen/autoload/pathogen.vim
 call pathogen#infect('~/dotfiles/bundle')
 call pathogen#runtime_append_all_bundles('~/dotfiles/bundle')
+call pathogen#helptags()
 syntax on
 filetype plugin indent on
 
@@ -62,9 +62,6 @@ nnoremap <silent> <leader>J :let _s=@/<Bar>:s/\s\+$//e<Bar>:j<CR>:let @/=_s<Bar>
 
 " vim-latexsuite settings 
 "
-" REQUIRED. This makes vim invoke Latex-Suite when you open a tex file.
-filetype plugin on
-"
 " IMPORTANT: win32 users will need to have 'shellslash' set so that latex
 " can be called correctly.
 set shellslash
@@ -74,13 +71,9 @@ set shellslash
 " program to always generate a file-name.
 set grepprg=grep\ -nH\ $*
 "
-" " OPTIONAL: This enables automatic indentation as you type.
-filetype indent on
-"
-" " OPTIONAL: Starting with Vim 7, the filetype of empty .tex files defaults
-" to
-" " 'plaintex' instead of 'tex', which results in vim-latex not being loaded.
-" " The following changes the default filetype back to 'tex':
+" OPTIONAL: Starting with Vim 7, the filetype of empty .tex files defaults
+" to 'plaintex' instead of 'tex', which results in vim-latex not being loaded.
+" The following changes the default filetype back to 'tex':
 let g:tex_flavor='latex'
 
 " support indents for tex files
