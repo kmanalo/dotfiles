@@ -80,7 +80,7 @@ let fortran_free_source=1
 set shellslash
 "
 " IMPORTANT: grep will sometimes skip displaying the file name if you
-" search in a singe file. This will confuse Latex-Suite. Set your grep
+" search in a single file. This will confuse Latex-Suite. Set your grep
 " program to always generate a file-name.
 set grepprg=grep\ -nH\ $*
 "
@@ -90,3 +90,13 @@ set grepprg=grep\ -nH\ $*
 let g:tex_flavor='latex'
 " end section: vim-latexsuite settings
 
+" mappings for ,_ to split horizontal
+map <leader>_ <C-w>s
+" mappings for ,| to split vertical
+map <leader><bar> <C-w>v
+
+" map to move between windows
+map <leader>k <C-w><Up>
+map <leader>j <C-w><Down>
+map <leader>h <C-w><Left>
+map <leader>l <C-w><Right> 
