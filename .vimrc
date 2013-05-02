@@ -73,6 +73,19 @@ nnoremap <silent> <leader>J :let _s=@/<Bar>:s/\s\+$//e<Bar>:j<CR>:let @/=_s<Bar>
 " fortran boolean to ensure free format
 let fortran_free_source=1
 
+" section: highlight the 80th column
+"
+" in Vim >= 7.3, also highlight columns 120+
+if exists('+colorcolumn')
+" pick 120-320 because you have to provide an upper bound and 320 just
+" covers a 1080p GVim window in Ubuntu Mono 11 font.)
+  let &colorcolumn="80,".join(range(120,320),",")
+else
+" fallback for Vim < v7.3
+  autocmd BufWinEnter * let w:m2=matchadd('ErrorMsg', '\%>80v.\+', -1)
+endif
+" end section: highlight the 80th column
+
 " section: vim-latexsuite settings 
 "
 " IMPORTANT: win32 users will need to have 'shellslash' set so that latex
