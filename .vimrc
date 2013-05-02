@@ -28,7 +28,7 @@ nnoremap <CR> :noh<CR><CR>
 
 set t_Co=256
 " another pleasant color in gvim
-silent! colorscheme koehler
+" silent! colorscheme koehler
 silent! colorscheme darkblue
 " otherwise use this one in linux
 if has("unix")
@@ -114,7 +114,7 @@ au InsertLeave * hi statusline guibg=DarkGrey ctermfg=8 guifg=White ctermbg=15
 " default the statusline to green when entering Vim
 hi statusline guibg=DarkGrey ctermfg=8 guifg=White ctermbg=15
 "
-" Formats the statusline
+" formats the statusline
 set statusline=%f                               "file name
 set statusline+=[%{strlen(&fenc)?&fenc:'none'}, "file encoding
 set statusline+=%{&ff}] "file format
@@ -128,6 +128,6 @@ set statusline+=Line:%l/%L[%p%%]            " line X of Y [percent of file]
 set statusline+=\ Words:%{WordCount()}
 set statusline+=\ Col:%c                    " current column
 set statusline+=\ Buf:%n                    " Buffer number
-"set statusline+=\ [%b][0x%B]\               " ASCII and byte code under cursor
+" set statusline+=\ [%b][0x%B]\               " ASCII and byte code under cursor
 
 set laststatus=2 " always keep the statusline active
