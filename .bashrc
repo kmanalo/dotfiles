@@ -43,11 +43,6 @@ if [[ `hostname` = critcel* ]] ||
   export DATAPATH=/nv/ps1/critcel-project/MCNP_DATA
   export PATH=$PATH:"/nv/hp17/kmanalo3/critcel/rsicc-isos/mcnp6-beta3-dvd-pt1/LANL/MCNP_CODE/bin"
 
-# supress on host force
-elif [[ `hostname` != force* ]]; then 
-    alias ls='ls --group-directories-first --color=auto'
-    eval $(dircolors -b ~/dotfiles/.dircolors)
-
 # go ahead and source ubuntu default bashrc
 elif [[ `hostname` == kevin-vbox ]] ; then
   source ~/.bashrc.ubuntu  
@@ -64,6 +59,12 @@ elif [[ `hostname` = reagan* ]] ; then
     DATAPATH="/home/MCNP_DATA"
 
     PATH=$PATH:/opt/local/bin
+
+# supress on host force
+elif [[ `hostname` != force* ]]; then 
+    alias ls='ls --group-directories-first --color=auto'
+    eval $(dircolors -b ~/dotfiles/.dircolors)
+
 fi
 
 # Host-independent aliases
