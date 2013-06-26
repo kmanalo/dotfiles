@@ -2,7 +2,7 @@
 let $MYVIMRC=$HOME."/dotfiles/.vimrc"
 
 " pathogen support
-source ~/dotfiles/bundle/vim-pathogen/autoload/pathogen.vim
+source $HOME./dotfiles/bundle/vim-pathogen/autoload/pathogen.vim
 call pathogen#infect('~/dotfiles/bundle')
 call pathogen#runtime_append_all_bundles('~/dotfiles/bundle')
 call pathogen#helptags()
