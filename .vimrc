@@ -3,8 +3,8 @@ let $MYVIMRC=$HOME."/dotfiles/.vimrc"
 
 " pathogen support
 source $HOME./dotfiles/bundle/vim-pathogen/autoload/pathogen.vim
-call pathogen#infect('~/dotfiles/bundle')
-call pathogen#runtime_append_all_bundles('~/dotfiles/bundle')
+call pathogen#infect('$HOME./dotfiles/bundle')
+call pathogen#runtime_append_all_bundles('$HOME./dotfiles/bundle')
 call pathogen#helptags()
 syntax on
 filetype plugin indent on
@@ -60,11 +60,6 @@ map <leader>l <C-w><Right>
 let mapleader = ","
 nmap <leader>v :tabedit $MYVIMRC<CR>
 
-" source as soon as we write the vimrc file
-if has("autocmd")
-  autocmd bufwritepost .vimrc source $MYVIMRC
-endif
-
 " delete trailing whitespace
 nnoremap <silent> <leader><del> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>
 " remove trailing whitespace before join, command is ",J"
@@ -113,3 +108,9 @@ map <leader>k <C-w><Up>
 map <leader>j <C-w><Down>
 map <leader>h <C-w><Left>
 map <leader>l <C-w><Right> 
+
+" source as soon as we write the vimrc file
+if has("autocmd")
+  autocmd bufwritepost .vimrc source $MYVIMRC
+endif
+
