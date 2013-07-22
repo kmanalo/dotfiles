@@ -60,6 +60,13 @@ map <leader>l <C-w><Right>
 let mapleader = ","
 nmap <leader>v :tabedit $MYVIMRC<CR>
 
+" enables ,u to find UPPERCASE ,U to surround with losa tag (for tex)
+nmap <leader>u /\v<[A-Z][A-Z]+><CR> 
+nmap <leader>U csw- 
+
+" enables ,s to reinitialize session
+nmap <leader>s :source $HOME/mysession.vim<CR>
+
 " delete trailing whitespace
 nnoremap <silent> <leader><del> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>
 " remove trailing whitespace before join, command is ",J"
@@ -96,6 +103,11 @@ set grepprg=grep\ -nH\ $*
 " to 'plaintex' instead of 'tex', which results in vim-latex not being loaded.
 " The following changes the default filetype back to 'tex':
 let g:tex_flavor='latex'
+" Default viewer
+let g:Tex_DefaultTargetFormat='pdf'
+
+" compile dvi first, then ps, then pdf, in that order
+let g:Tex_FormatDependency_pdf = 'dvi,pdf'
 " end section: vim-latexsuite settings
 
 " mappings for ,_ to split horizontal
@@ -114,3 +126,14 @@ if has("autocmd")
   autocmd bufwritepost .vimrc source $MYVIMRC
 endif
 
+" gvim windows 64-bit has issues 
+set backspace=2
+set backspace=indent,eol,start
+
+set tw=80
+
+au BufRead,BufNewFile *.aux set filetype=aux 
+au FileType aux map <buffer> <F5> :!bibtex %:r<CR>
+
+autocmd FileType tex let b:surround_108 = "\\losa{\r}"
+let g:surround_45 = "\\losa{\r}"

@@ -6,7 +6,7 @@
 "  Description: functions for compiling/viewing/searching latex documents
 "=============================================================================
 
-" Tex_SetTeXCompilerTarget: sets the 'target' for the next call to Tex_RunLaTeX() {{{
+" Tex_SetTeXCompilerTarget: sets the 'target' for the next call to Tex_RunLaTeX() 
 function! Tex_SetTeXCompilerTarget(type, target)
 	call Tex_Debug("+Tex_SetTeXCompilerTarget: setting target to [".a:target."] for ".a:type."r", "comp")
 
@@ -85,8 +85,8 @@ com! -nargs=1 TCTarget :call Tex_SetTeXCompilerTarget('Compile', <f-args>)
 com! -nargs=1 TVTarget :call Tex_SetTeXCompilerTarget('View', <f-args>)
 com! -nargs=? TTarget :call SetTeXTarget(<f-args>)
 
-" }}}
-" Tex_CompileLatex: compiles the present file. {{{
+" 
+" Tex_CompileLatex: compiles the present file. 
 " Description:
 function! Tex_CompileLatex()
 	if &ft != 'tex'
@@ -143,8 +143,8 @@ function! Tex_CompileLatex()
 	redraw!
 
 	exe 'cd '.s:origdir
-endfunction " }}}
-" Tex_RunLaTeX: compilation function {{{
+endfunction " 
+" Tex_RunLaTeX: compilation function 
 " this function runs the latex command on the currently open file. often times
 " the file being currently edited is only a fragment being \input'ed into some
 " master tex file. in this case, make a file called mainfile.latexmain in the
@@ -213,12 +213,13 @@ function! Tex_RunLaTeX()
 	call Tex_Debug("-Tex_RunLaTeX", "comp")
 endfunction
 
-" }}}
-" Tex_ViewLaTeX: opens viewer {{{
+" 
+" Tex_ViewLaTeX: opens viewer 
 " Description: opens the DVI viewer for the file being currently edited.
 " Again, if the current file is a \input in a master file, see text above
 " Tex_RunLaTeX() to see how to set this information.
 function! Tex_ViewLaTeX()
+
 	if &ft != 'tex'
 		echo "calling Tex_ViewLaTeX from a non-tex file"
 		return
@@ -245,6 +246,7 @@ function! Tex_ViewLaTeX()
 		let execString = substitute(execString, '{v:servername}', v:servername, 'g')
 
 	elseif has('win32')
+	    echo "calling Tex_ViewLaTeX win32"
 		" unfortunately, yap does not allow the specification of an external
 		" editor from the command line. that would have really helped ensure
 		" that this particular vim and yap are connected.
@@ -300,6 +302,7 @@ function! Tex_ViewLaTeX()
 	let execString = substitute(execString, '\V$*', mainfname, 'g')
 	call Tex_Debug("Tex_ViewLaTeX: execString = ".execString, "comp")
 
+	echo execString
 	exec 'silent! !'.execString
 
 	if !has('gui_running')
@@ -309,8 +312,8 @@ function! Tex_ViewLaTeX()
 	exe 'cd '.s:origdir
 endfunction
 
-" }}}
-" Tex_ForwardSearchLaTeX: searches for current location in dvi file. {{{
+" 
+" Tex_ForwardSearchLaTeX: searches for current location in dvi file. 
 " Description: if the DVI viewer is compatible, then take the viewer to that
 "              position in the dvi file. see docs for Tex_RunLaTeX() to set a
 "              master file if this is an \input'ed file.
@@ -421,12 +424,12 @@ function! Tex_ForwardSearchLaTeX()
 	exe 'cd '.s:origdir
 endfunction
 
-" }}}
+" 
 
 " ==============================================================================
 " Functions for compiling parts of a file.
 " ==============================================================================
-" Tex_PartCompile: compiles selected fragment {{{
+" Tex_PartCompile: compiles selected fragment 
 " Description: creates a temporary file from the selected fragment of text
 "       prepending the preamble and \end{document} and then asks Tex_RunLaTeX() to
 "       compile it.
@@ -477,8 +480,8 @@ function! Tex_PartCompile() range
 	let b:fragmentFile = 1
 
 	silent! call Tex_RunLaTeX()
-endfunction " }}}
-" Tex_RemoveTempFiles: cleans up temporary files created during part compilation {{{
+endfunction " 
+" Tex_RemoveTempFiles: cleans up temporary files created during part compilation 
 " Description: During part compilation, temporary files containing the
 "              visually selected text are created. These files need to be
 "              removed when Vim exits to avoid "file leakage".
@@ -494,12 +497,12 @@ function! Tex_RemoveTempFiles()
 		call Tex_DeleteFile(fnamemodify(tmpfile, ':p:r').'.*')
 		let i = i + 1
 	endwhile
-endfunction " }}}
+endfunction " 
 
 " ==============================================================================
 " Compiling a file multiple times to resolve references/citations etc.
 " ==============================================================================
-" Tex_CompileMultipleTimes: The main function {{{
+" Tex_CompileMultipleTimes: The main function 
 " Description: compiles a file multiple times to get cross-references right.
 function! Tex_CompileMultipleTimes()
 	" Just extract the root without any extension because we want to construct
@@ -608,8 +611,8 @@ function! Tex_CompileMultipleTimes()
 	exec 'silent! cfile '.mainFileName_root.'.log'
 
 	exe 'cd '.s:origdir
-endfunction " }}}
-" Tex_GetAuxFile: get the contents of the AUX file {{{
+endfunction " 
+" Tex_GetAuxFile: get the contents of the AUX file 
 " Description: get the contents of the AUX file recursively including any
 " @\input'ted AUX files.
 function! Tex_GetAuxFile(auxFile)
@@ -623,7 +626,7 @@ function! Tex_GetAuxFile(auxFile)
 	let auxContents = substitute(auxContents, pattern, '\=Tex_GetAuxFile(submatch(1))', 'g')
 
 	return auxContents
-endfunction " }}}
+endfunction " 
 
 " ==============================================================================
 " Helper functions for
@@ -632,7 +635,7 @@ endfunction " }}}
 " . going to the correct line _and column_ number from from the quick fix
 "   window.
 " ==============================================================================
-" Tex_SetupErrorWindow: sets up the cwindow and preview of the .log file {{{
+" Tex_SetupErrorWindow: sets up the cwindow and preview of the .log file 
 " Description:
 function! Tex_SetupErrorWindow()
 	let mainfname = Tex_GetMainFileName()
@@ -669,8 +672,8 @@ function! Tex_SetupErrorWindow()
         endif
 	endif
 
-endfunction " }}}
-" Tex_PositionPreviewWindow: positions the preview window correctly. {{{
+endfunction " 
+" Tex_PositionPreviewWindow: positions the preview window correctly. 
 " Description:
 "   The purpose of this function is to count the number of times an error
 "   occurs on the same line. or in other words, if the current line is
@@ -757,8 +760,8 @@ function! Tex_PositionPreviewWindow(filename)
 	endwhile
 	normal! z.
 
-endfunction " }}}
-" Tex_UpdatePreviewWindow: updates the view of the log file {{{
+endfunction " 
+" Tex_UpdatePreviewWindow: updates the view of the log file 
 " Description:
 "       This function should be called when focus is in a quickfix window.
 "       It opens the log file in a preview window and makes it display that
@@ -773,8 +776,8 @@ function! Tex_UpdatePreviewWindow(filename)
 		6 wincmd _
 		wincmd p
 	endif
-endfunction " }}}
-" Tex_GotoErrorLocation: goes to the correct location of error in the tex file {{{
+endfunction " 
+" Tex_GotoErrorLocation: goes to the correct location of error in the tex file 
 " Description:
 "   This function should be called when focus is in a quickfix window. This
 "   function will first open the preview window of the log file (if it is not
@@ -838,8 +841,8 @@ function! Tex_GotoErrorLocation(filename)
 	if !Tex_GetVarValue('Tex_ShowErrorContext')
 		pclose!
 	endif
-endfunction " }}}
-" Tex_SetCompilerMaps: sets maps for compiling/viewing/searching {{{
+endfunction " 
+" Tex_SetCompilerMaps: sets maps for compiling/viewing/searching 
 " Description:
 function! <SID>Tex_SetCompilerMaps()
 	if exists('b:Tex_doneCompilerMaps')
@@ -857,7 +860,7 @@ function! <SID>Tex_SetCompilerMaps()
 	call Tex_MakeMap(s:ml."lv", "<Plug>Tex_View", 'n', '<buffer>')
 	call Tex_MakeMap(s:ml."ls", "<Plug>Tex_ForwardSearch", 'n', '<buffer>')
 endfunction
-" }}}
+" 
 
 augroup LatexSuite
 	au LatexSuite User LatexSuiteFileType

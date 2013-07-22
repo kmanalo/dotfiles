@@ -137,7 +137,7 @@ TexLet g:Tex_UseMakefile = 1
 " 		Set your $PATH variable to include the full path to these programs.
 if has('win32')
 	TexLet g:Tex_ViewRule_ps = 'gsview32'
-	TexLet g:Tex_ViewRule_pdf = 'AcroRd32'
+	TexLet g:Tex_ViewRule_pdf = 'C:\Program Files (x86)\SumatraPDF\SumatraPDF.exe'
 	TexLet g:Tex_ViewRule_dvi = 'yap -1'
 elseif has('macunix')
 	" Let the system pick.  If you want, you can override the choice here.

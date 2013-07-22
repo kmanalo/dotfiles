@@ -2,7 +2,7 @@
 "            Type: compiler plugin for LaTeX
 " Original Author: Artem Chuprina <ran@ran.pp.ru>
 "   Customization: Srinath Avadhanula <srinath@fastmail.fm>
-" Description:  {{{
+" Description:  
 "   This file sets the 'makeprg' and 'errorformat' options for the LaTeX
 "   compiler. It is customizable to optionally ignore certain warnings and
 "   provides the ability to set a dynamic 'ignore-warning' level.
@@ -57,7 +57,7 @@
 "
 " TODO:
 "   1. menu items for dynamically selecting a ignore warning level.
-" }}}
+" 
 
 " avoid reinclusion for the same buffer. keep it buffer local so it can be
 " externally reset in case of emergency re-sourcing.
@@ -67,7 +67,7 @@ endif
 let b:doneTexCompiler = 1
 
 " ==============================================================================
-" Customization of 'efm':  {{{
+" Customization of 'efm':  
 " This section contains the customization variables which the user can set.
 " g:Tex_IgnoredWarnings: This variable contains a ¡ seperated list of
 " patterns which will be ignored in the TeX compiler's output. Use this
@@ -104,9 +104,9 @@ if !exists('g:Tex_ShowallLines')
 	let g:Tex_ShowallLines = 0
 endif
 
-" }}}
+" 
 " ==============================================================================
-" Customization of 'makeprg': {{{
+" Customization of 'makeprg': 
 
 " There are several alternate ways in which 'makeprg' is set up. 
 "
@@ -169,11 +169,11 @@ else
 				\ escape(' \nonstopmode \input{$*}', escChars)
 endif
 
-" }}}
+" 
 " ==============================================================================
-" Functions for setting up a customized 'efm' {{{
+" Functions for setting up a customized 'efm' 
 
-" IgnoreWarnings: parses g:Tex_IgnoredWarnings for message customization {{{
+" IgnoreWarnings: parses g:Tex_IgnoredWarnings for message customization 
 " Description: 
 function! <SID>IgnoreWarnings()
 	let i = 1
@@ -186,8 +186,8 @@ function! <SID>IgnoreWarnings()
 	endwhile
 endfunction 
 
-" }}}
-" SetLatexEfm: sets the 'efm' for the latex compiler {{{
+" 
+" SetLatexEfm: sets the 'efm' for the latex compiler 
 " Description: 
 function! <SID>SetLatexEfm()
 
@@ -248,15 +248,15 @@ function! <SID>SetLatexEfm()
 
 endfunction 
 
-" }}}
-" Strntok: extract the n^th token from a list {{{
+" 
+" Strntok: extract the n^th token from a list 
 " example: Strntok('1,23,3', ',', 2) = 23
 fun! <SID>Strntok(s, tok, n)
 	return matchstr( a:s.a:tok[0], '\v(\zs([^'.a:tok.']*)\ze['.a:tok.']){'.a:n.'}')
 endfun
 
-" }}}
-" SetTexCompilerLevel: sets the "level" for the latex compiler {{{
+" 
+" SetTexCompilerLevel: sets the "level" for the latex compiler 
 function! <SID>SetTexCompilerLevel(...)
 	if a:0 > 0
 		let level = a:1
@@ -281,9 +281,9 @@ function! <SID>SetTexCompilerLevel(...)
 endfunction 
 
 com! -nargs=? TCLevel :call <SID>SetTexCompilerLevel(<f-args>)
-" }}}
+" 
 
-" }}}
+" 
 " ==============================================================================
 
 call s:SetLatexEfm()
@@ -296,3 +296,4 @@ endif
 call Tex_Debug("compiler/tex.vim: sourcing this file", "comp")
 
 " vim:fdm=marker:ff=unix:noet:ts=4:sw=4
+set tw=80
