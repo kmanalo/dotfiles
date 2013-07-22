@@ -5,6 +5,9 @@ if [ -f /etc/bashrc ]; then
 	. /etc/bashrc
 fi
 
+# universal open scripts
+export PATH=~/dotfiles/scripts/:$PATH
+
 # critcel User specific aliases and functions
 if [[ `hostname` = critcel* ]] || 
    [[ `hostname` = iw* ]] ||
@@ -59,6 +62,9 @@ elif [[ `hostname` = reagan* ]] ; then
     DATAPATH="/home/MCNP_DATA"
 
     PATH=$PATH:/opt/local/bin
+
+    # support for nagfor5.3
+    export NAG_KUSARI_FILE=/usr/local/lib/NAG_Fortran/nag.licence
 
 # supress on host force
 elif [[ `hostname` != force* ]]; then 
