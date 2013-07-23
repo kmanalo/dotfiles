@@ -2,9 +2,9 @@
 let $MYVIMRC=$HOME."/dotfiles/.vimrc"
 
 " pathogen support
-source $HOME./dotfiles/bundle/vim-pathogen/autoload/pathogen.vim
-call pathogen#infect('$HOME./dotfiles/bundle')
-call pathogen#runtime_append_all_bundles('$HOME./dotfiles/bundle')
+source $HOME/dotfiles/bundle/vim-pathogen/autoload/pathogen.vim
+call pathogen#infect('$HOME/dotfiles/bundle')
+call pathogen#runtime_append_all_bundles('$HOME/dotfiles/bundle')
 call pathogen#helptags()
 syntax on
 filetype plugin indent on
