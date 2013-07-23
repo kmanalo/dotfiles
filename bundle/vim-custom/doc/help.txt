@@ -1,0 +1,51 @@
+SearchIncr({pat_str}, {sub_str}, {start_val}, {incr_val},{opt:leadingzeros})		*SearchIncr()*
+The proper way to call the function
+(Use visual selection)
+
+----------------------------
+Example 1
+----------------------------
+
+:'<,'>call SearchIncr("0 0","new",1,5,8)
+
+If the file looks like this:
+----------------------------
+what 0 0 post
+areu 0 0 post
+doin 0 0 post
+
+You will then get:
+----------------------------
+what new00000001 post
+areu new00000006 post
+doin new00000011 post
+
+----------------------------
+Example 2
+----------------------------
+
+:'<,'>call SearchIncr("0;","px;",-18,-18,0,'after')
+
+If the file looks like this:
+----------------------------
+.star_10 {
+  background: url(stars.png) no-repeat 0 0;
+}
+.star_10 {
+  background: url(stars.png) no-repeat 0 0;
+}
+.star_10 {
+  background: url(stars.png) no-repeat 0 0;
+}
+
+You will then get:
+----------------------------
+.star_10 {
+  background: url(stars.png) no-repeat 0 -18px;
+}
+.star_10 {
+  background: url(stars.png) no-repeat 0 -36px;
+}
+.star_10 {
+  background: url(stars.png) no-repeat 0 -54px;
+}

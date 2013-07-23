@@ -2,7 +2,7 @@
 let $MYVIMRC=$HOME."/dotfiles/.vimrc"
 
 " pathogen support
-source $HOME/dotfiles/bundle/vim-pathogen/autoload/pathogen.vim
+source $HOME./dotfiles/bundle/vim-pathogen/autoload/pathogen.vim
 call pathogen#infect('$HOME./dotfiles/bundle')
 call pathogen#runtime_append_all_bundles('$HOME./dotfiles/bundle')
 call pathogen#helptags()
@@ -82,9 +82,6 @@ if exists('+colorcolumn')
 " pick 120-320 because you have to provide an upper bound and 320 just
 " covers a 1080p GVim window in Ubuntu Mono 11 font.)
   let &colorcolumn="80,".join(range(120,320),",")
-" else
-" fallback for Vim < v7.3
-"  autocmd BufWinEnter * let w:m2=matchadd('ErrorMsg', '\%>80v.\+', -1)
 endif
 " end section: highlight the 80th column
 
@@ -133,7 +130,7 @@ set backspace=indent,eol,start
 set tw=80
 
 au BufRead,BufNewFile *.aux set filetype=aux 
-au FileType aux map <buffer> <F5> :!bibtex %:r<CR>
+au FileType aux map <buffer> <F5> :!bibtex %:r <CR>
 
 autocmd FileType tex let b:surround_108 = "\\losa{\r}"
 let g:surround_45 = "\\losa{\r}"
