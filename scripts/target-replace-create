@@ -1,0 +1,129 @@
+#!/usr/bin/env python3
+
+#changefile=input("Enter name of changefile: ")
+
+import sys
+sys.path.append('/opt/local/crittool')
+
+import os
+
+from rewindable_iterator import rewindable_iterator
+# from mcnp_analysis import mcnp_analysis
+
+changefile=input("Enter changes file:")
+
+replacements_by_target={}
+
+
+change_fh=rewindable_iterator(open(changefile, 'r'))
+
+for line in change_fh:
+
+    #DEBG print(line,end="")
+
+    # both 'replace' and ':' should all be in line before breaking
+    conditions = ("replace", ':')
+
+    if line == "\n": 
+        print("blank line detected. ending.")
+
+    if "targetfile:" in line:
+        print("target file identified as -->"+line.split(":")[1])
+        target_file=line.split(":")[1].rstrip()
+        target_list=[]
+        target_count=0
+        for targets in change_fh:
+            if all(a in targets for a in conditions):
+                line=targets
+                break
+            else: 
+                target_list.append(targets.rstrip())
+                target_count+=1
+
+    if "replacetarget:" in line:
+
+        replacement_index=line.split(":")[1].rstrip()
+        print('replacement #', replacement_index, ' of', str(len(target_list)),
+            ' found')
+
+        file_create_count=0
+        replacement_list=[]
+        for replacements in change_fh:
+            if all(a in replacements for a in conditions):
+                change_fh.backup()
+                break
+            else:
+                replacement_list.append(replacements.rstrip())
+                file_create_count+=1
+
+        print("packing ", file_create_count, " entries into dictionary")
+        replacements_by_target[replacement_index]=replacement_list
+
+    if "replacefiles" in line:
+        create_file_list=[]
+        create_dir_list=[]
+        for file in change_fh: 
+            if '/' in file:
+                string=file.split("/")
+                print(string)
+                create_dir_list.append(string[0])
+                create_file_list.append(file)
+            else:
+                create_file_list.append(file)
+
+                    
+#change_fh.close()
+
+print('\ncreate  dir list')
+print(create_dir_list)
+
+def ensure_directories(dir_list):
+    for d in dir_list:
+        if not os.path.exists(d):
+            os.makedirs(d)
+
+def item_index(a, b):
+    """ where a is a list is smaller than a large list of b """
+    list_of_indices= [a.index(item) for item in b]
+    if len(list_of_indices) == 1:
+        return list_of_indices[0]
+    else:
+        print("Error: there should only have been one match!")
+        print(list_of_indices)
+
+ensure_directories(create_dir_list)
+
+print('\ncreate file list')
+print(create_file_list)
+
+for idx in range(len(replacements_by_target)):
+    num_files=len(create_file_list)
+    print('\nnum files:', num_files)
+    print(target_list[idx])
+    print(replacements_by_target[str(idx+1)])
+    print()
+
+
+create_file_count=-1
+for create_file in create_file_list:
+    print(" creating file: ", create_file.rstrip())
+    create_file_count+=1
+    create_fh = open(create_file.rstrip("\r\n"),'w')
+    target_fh=open(target_file,'r')
+    file_line_count=0
+    for line in target_fh:
+        file_line_count+=1
+        final = line.rstrip() in target_list
+        if line.rstrip() in target_list:
+            #print (str(file_line_count)+":", line, item_index(target_list,[line.rstrip()]))
+            target_index = item_index(target_list,[line.rstrip()])
+            print(line.rstrip(), target_index)
+            print(replacements_by_target[str(target_index+1)][create_file_count])
+            print(replacements_by_target[str(target_index+1)][create_file_count], file=create_fh)
+        else:
+            print(line.rstrip(), file=create_fh)
+
+    target_fh.close()
+    create_fh.close()
+
+#print(target_list)
