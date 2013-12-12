@@ -15,6 +15,8 @@ if [[ `hostname` = critcel* ]] ||
 
   SHAREDDIR=/nv/ps1/critcel-project
 
+  source ${SHAREDDIR}/grouprc
+
   function qpeekgt() { 
     ${SHAREDDIR}/qpeek ${@}.repace.pace.gatech.edu 
   }
@@ -26,6 +28,9 @@ if [[ `hostname` = critcel* ]] ||
   }
   function png2eps() { 
     CMD=`echo sam2p ${@}.png EPS: ${@}.eps` $CMD 
+  }
+  function git_diff() {
+    git diff --no-ext-diff -w "$@" | vim -R -
   }
   
   alias penmshfp='penmshxp -msf 4; mkdir -p plots; mv *png plots'
@@ -42,9 +47,6 @@ if [[ `hostname` = critcel* ]] ||
   export declib=/nv/hp16/kmanalo3/data/packages/serpent-757/c757mnyws00/c757mnyws00/xsdata/sss_endfb7.dec
   export nfylib=/nv/hp16/kmanalo3/data/packages/serpent-757/c757mnyws00/c757mnyws00/xsdata/sss_endfb7.nfy
   
-  # for MCNP
-  export DATAPATH=/nv/ps1/critcel-project/MCNP_DATA
-  export PATH=$PATH:"/nv/hp17/kmanalo3/critcel/rsicc-isos/mcnp6-beta3-dvd-pt1/LANL/MCNP_CODE/bin"
 
 # go ahead and source ubuntu default bashrc
 elif [[ `hostname` == kevin-vbox ]] ; then
@@ -74,12 +76,19 @@ elif [[ `hostname` != force* ]]; then
 fi
 
 # Host-independent aliases
-
 alias vip='vim -p'
 alias rm='rm -i'
 alias df='df -h'
 alias quota='quota -s -u'
 alias du='du -h'
+alias lls='ls --color=auto -lah'
+alias pwd='pwd -P' # I cannot believe I didn't know this
+
+# Host-independent functions
+function cd()
+{
+     builtin cd "$*" && ls
+}
 
 # ignore duplicates in history
 export HISTCONTROL=ignoredups
@@ -90,3 +99,14 @@ export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
 # Increase the stacksize 
 ulimit -s unlimited
 
+# PATH for MCNP executables
+export PATH
+PATH=$PATH:/nv/hp17/kmanalo3/data/mcnp6/MCNP_CODE/bin
+ 
+# Increase the stacksize 
+ulimit -s unlimited
+ 
+# DATAPATH for MCNP cross-section data
+export DATAPATH
+DATAPATH="/nv/hp17/kmanalo3/data/mcnp6/MCNP_DATA"
+ 

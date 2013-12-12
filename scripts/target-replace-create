@@ -1,20 +1,28 @@
-#!/usr/bin/env python3
+#!/usr/bin/env python
 
-#changefile=input("Enter name of changefile: ")
+from __future__ import print_function
 
 import sys
-sys.path.append('/opt/local/crittool')
+import socket # get the hostname with gethostname
+import argparse
+parser = argparse.ArgumentParser()
+
+parser.add_argument("-f", "--changefile", help="Changes file")
+args = parser.parse_args()
+
+if 'critcel' in socket.gethostname():
+    sys.path.append('/nv/ps1/critcel-project/crittool-python/crittool')
+if 'reagan' in socket.gethostname():
+    sys.path.append('/opt/local/crittool')
 
 import os
 
 from rewindable_iterator import rewindable_iterator
 # from mcnp_analysis import mcnp_analysis
 
-changefile=input("Enter changes file:")
-
+changefile=args.changefile
+  
 replacements_by_target={}
-
-
 change_fh=rewindable_iterator(open(changefile, 'r'))
 
 for line in change_fh:
@@ -91,6 +99,23 @@ def item_index(a, b):
         print("Error: there should only have been one match!")
         print(list_of_indices)
 
+def success_report(target_list, target_list_index):
+    count=0
+    if target_list:
+        for item in target_list:
+            print()
+            print('       FAILED TARGET:', item)
+            print('INTENDED REPLACEMENT:', \
+                replacements_by_target[str(failed_index[count]+1)][create_file_count]) 
+            count+=1
+        print()
+        print(count, 'of', len(target_list_index), 'FAILED TARGETS, check both changes and target files')
+        print()
+    else:
+        print()
+        print('COMPLETE SUCCESS, all TARGETS replaced')
+        print()
+
 ensure_directories(create_dir_list)
 
 print('\ncreate file list')
@@ -111,19 +136,56 @@ for create_file in create_file_list:
     create_fh = open(create_file.rstrip("\r\n"),'w')
     target_fh=open(target_file,'r')
     file_line_count=0
+
+    successful_target=[]
     for line in target_fh:
         file_line_count+=1
-        final = line.rstrip() in target_list
-        if line.rstrip() in target_list:
+        final = line.strip() in target_list
+
+        search = False
+        for item in target_list:
+          if item in line.rstrip():
+            search = True
+            saved_item = item
+
+        #if line.strip() in target_list:
+        if search: # is true
             #print (str(file_line_count)+":", line, item_index(target_list,[line.rstrip()]))
-            target_index = item_index(target_list,[line.rstrip()])
-            print(line.rstrip(), target_index)
-            print(replacements_by_target[str(target_index+1)][create_file_count])
+            #target_index = item_index(target_list,[line.strip()])
+            target_index = item_index(target_list,[saved_item])
+            successful_target.append(target_list[target_index])
+
+            print()
+            print('TARGET INDEX: ', target_index+1)
+            print('TARGETED: ', line.rstrip())
+            #print('TARGETED: ', saved_item) 
+            print('REPLACED: ', replacements_by_target[str(target_index+1)][create_file_count])
+
+            # this writes to file
             print(replacements_by_target[str(target_index+1)][create_file_count], file=create_fh)
         else:
+            # this still writes to file
             print(line.rstrip(), file=create_fh)
+    
+    target_list_index=[]
+    count=0
+    for item in target_list:
+        target_list_index.append(count)
+        count+=1
+
+    success_index=[]
+    for item in successful_target:
+        success_index.append( target_list.index(item) )
+
+    failed_index = [x for x in target_list_index if x not in success_index] 
+
+    for item in successful_target:
+        target_list.remove(item)
+
+
+    success_report(target_list, target_list_index)
+
 
     target_fh.close()
     create_fh.close()
 
-#print(target_list)

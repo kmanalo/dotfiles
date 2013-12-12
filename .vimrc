@@ -3,6 +3,7 @@ let $MYVIMRC=$HOME."/dotfiles/.vimrc"
 
 " pathogen support
 source $HOME/dotfiles/bundle/vim-pathogen/autoload/pathogen.vim
+" verbose set runtimepath?
 call pathogen#infect('$HOME/dotfiles/bundle')
 call pathogen#runtime_append_all_bundles('$HOME/dotfiles/bundle')
 call pathogen#helptags()
@@ -10,9 +11,9 @@ syntax on
 filetype plugin indent on
 
 set nowrap
-set tabstop=2
-set shiftwidth=2
-set softtabstop=2
+set tabstop=4
+set shiftwidth=4
+set softtabstop=4
 set expandtab
 
 " highlights should always be off at first
@@ -30,7 +31,7 @@ silent! colorscheme koehler
 silent! colorscheme darkblue
 " otherwise use this one in linux
 if has("unix")
-  silent! colorscheme leo
+  silent! colorscheme desert
 endif
 
 " when comparing files with vimdiff ignore whitespace
