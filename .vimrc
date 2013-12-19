@@ -135,3 +135,10 @@ au FileType aux map <buffer> <F5> :!bibtex %:r <CR>
 
 autocmd FileType tex let b:surround_108 = "\\losa{\r}"
 let g:surround_45 = "\\losa{\r}"
+
+map <leader>k :s/^\s\+
+" empty line
+map <leader>l d0d$k 
+map <leader>; :s/\s\+$//
+" convert ',\S' to ', \S' where \S is any character that is not whitespace
+map <leader>, :s/,\(\S\)/, \1/
