@@ -26,3 +26,4 @@ au FileType aux map <buffer> <F5> :!bibtex %:r <CR>
 " this unsets the "last search pattern" register by hitting return
 nnoremap <CR> :noh<CR><CR>
 
+" :au BufNewFile *.cpp 0r ~/dotfiles/bundle/vim-custom/plugin/skeleton.cpp
