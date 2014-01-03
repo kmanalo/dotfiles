@@ -15,14 +15,11 @@ call vundle#rc()
 Bundle 'gmarik/vundle'
 Bundle 'nvie/vim-flake8'
 Bundle 'git://git.code.sf.net/p/vim-latex/vim-latex'
+Bundle 'ivanov/vim-ipython'
+Bundle 'tpope/vim-surround'
+Bundle 'kmanalo/vim-custom'
 
-" pathogen support
-source $HOME/dotfiles/bundle/vim-pathogen/autoload/pathogen.vim
-" sometimes you need to see all the paths, uncomment next line to show
-" verbose set runtimepath?
-call pathogen#infect('$HOME/dotfiles/bundle')
-call pathogen#runtime_append_all_bundles('$HOME/dotfiles/bundle')
-call pathogen#helptags()
-syntax on
-filetype plugin indent on
+" syntax files
+Bundle 'mitsuhiko/jinja2'
+Bundle 'critcel/vim-syntax'
 
