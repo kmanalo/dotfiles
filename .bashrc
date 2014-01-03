@@ -5,8 +5,10 @@ if [ -f /etc/bashrc ]; then
 	. /etc/bashrc
 fi
 
+export EDITOR=vim
 # universal open scripts
 export PATH=~/dotfiles/scripts/:$PATH
+export PATH=~/bin/:$PATH
 
 # critcel User specific aliases and functions
 if [[ `hostname` = critcel* ]] || 

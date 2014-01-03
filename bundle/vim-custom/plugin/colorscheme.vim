@@ -1,12 +1,12 @@
 " colorscheme section
 set t_Co=256
 " another pleasant color in gvim
-silent! colorscheme koehler
-silent! colorscheme darkblue
-" otherwise use this one in linux
-if has("unix")
-  silent! colorscheme desert
-endif
+" silent! colorscheme koehler
+" silent! colorscheme darkblue
+" " otherwise use this one in linux
+" if has("unix")
+" endif
+silent! colorscheme desert
 
 " section: highlight the 80th column
 "
