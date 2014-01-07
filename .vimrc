@@ -20,6 +20,7 @@ Bundle 'tpope/vim-surround'
 
 " my preferred settings
 Bundle 'kmanalo/vim-custom'
+Bundle 'kmanalo/frisk'
 
 " syntax files
 Bundle 'mitsuhiko/jinja2'
