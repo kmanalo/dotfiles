@@ -17,14 +17,20 @@ Bundle 'nvie/vim-flake8'
 Bundle 'git://git.code.sf.net/p/vim-latex/vim-latex'
 Bundle 'ivanov/vim-ipython'
 Bundle 'tpope/vim-surround'
+Bundle 'tpope/vim-pathogen'
+Bundle 'tpope/vim-dispatch'
 
 " my preferred settings
 Bundle 'kmanalo/vim-custom'
-Bundle 'kmanalo/frisk'
 
 " syntax files
 Bundle 'mitsuhiko/jinja2'
 Bundle 'critcel/vim-syntax'
+
+source $HOME/.vim/bundle/vim-pathogen/autoload/pathogen.vim
+call pathogen#infect('$HOME/dotfiles/bundle/{}')
+call pathogen#incubate('$HOME/dotfiles/bundle/{}')
+call pathogen#helptags()
 
 " turn syntax and filetype support back on
 syntax on
