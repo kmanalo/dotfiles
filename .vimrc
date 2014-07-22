@@ -6,8 +6,8 @@ let $MYVIMRC=$HOME."/dotfiles/.vimrc"
 set nocompatible              " be iMproved
 filetype off                  " required!
 
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
 
 " let Vundle manage Vundle
 Bundle 'gmarik/vundle'
@@ -27,14 +27,15 @@ Bundle 'kmanalo/vim-custom'
 Bundle 'mitsuhiko/jinja2'
 Bundle 'critcel/vim-syntax'
 
+call vundle#end()
+filetype plugin indent on
+
 source $HOME/.vim/bundle/vim-pathogen/autoload/pathogen.vim
 call pathogen#infect('$HOME/dotfiles/bundle/{}')
-call pathogen#incubate('$HOME/dotfiles/bundle/{}')
 call pathogen#helptags()
 
 " turn syntax and filetype support back on
 syntax on
-filetype plugin indent on
 
 " scripts have been scrapped but they can be recovered 
 " e.g. 'git checkout fac7649 -- scripts'
